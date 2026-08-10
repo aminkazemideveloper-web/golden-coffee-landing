@@ -1,0 +1,127 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@font-face {
+  font-family: "DanaRegular";
+  src: url("fonts/Dana/woff2/DanaFaNum-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "DanaMedium";
+  src: url("fonts/Dana/woff2/DanaFaNum-Medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "DanaDemiBold";
+  src: url("fonts/Dana/woff2/DanaFaNum-DemiBold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "MorabbaBold";
+  src: url("fonts/Morabba/woff2/Morabba-Bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "MorabbaMedium";
+  src: url("fonts/Morabba/woff2/Morabba-Medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "MorabbaLight";
+  src: url("fonts/Morabba/woff2/Morabba-Light.woff2") format("woff2");
+}
+
+@theme {
+  --font-danaRegular: "DanaRegular";
+  --font-danaMedium: "DanaMedium";
+  --font-danaDemiBold: "DanaDemiBold";
+  --font-morabbaBold: "MorabbaBold";
+  --font-morabbaMedium: "MorabbaMedium";
+  --font-morabbaLight: "MorabbaLight";
+  --text-200: clamp(0.5rem, 0.4036rem + 0.4286vw, 0.725rem);
+  --text-300: clamp(0.725rem, 0.6607rem + 0.2857vw, 0.875rem);
+  --text-400: clamp(0.875rem, 0.8214rem + 0.2381vw, 1rem);
+  --text-500: clamp(1rem, 0.9036rem + 0.4286vw, 1.225rem);
+  --text-600: clamp(1.225rem, 1.1071rem + 0.5238vw, 1.5rem);
+  --text-700: clamp(1.5rem, 1.2857rem + 0.9524vw, 2rem);
+  --text-800: clamp(2rem, 1.1429rem + 3.8095vw, 4rem);
+  --text-900: clamp(3.5rem, 2.4286rem + 4.7619vw, 6rem);
+}
+
+html {
+  direction: rtl;
+}
+
+.nav-active {
+  color: oklch(83.7% 0.128 66.29);
+}
+
+.nav-active::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  top: 100%;
+  background-color: oklch(83.7% 0.128 66.29);
+  border-radius: 10px;
+  position: absolute;
+}
+
+.sub-menu {
+  transition: all 0.2s ease-in;
+}
+
+.sub-menu::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  display: none;
+  width: 10px;
+  height: 10px;
+  background-color: oklch(83.7% 0.128 66.29);
+  border-radius: 50%;
+}
+
+.sub-menu:hover {
+  color: oklch(83.7% 0.128 66.29);
+  padding-right: 20px;
+}
+
+.sub-menu:hover::after {
+  display: block;
+}
+
+.line::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 1px;
+  background-color: #ef4444;
+}
+
+.footer::after,
+.footer-link::after {
+  content: "";
+  display: block;
+  position: absolute;
+  background-color: oklch(83.7% 0.128 66.29);
+  width: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.footer::after {
+  right: 0;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.footer-link::after {
+  height: 3px;
+  border-radius: 10px;
+  right: -15px;
+}
