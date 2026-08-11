@@ -1,38 +1,32 @@
-# ☕ Golden Coffee
+# ☕ Golden Coffee Landing Page
 
-A modern, responsive and RTL coffee shop landing page built with React, TypeScript and Tailwind CSS.
+A modern, responsive coffee shop landing page built with React, TypeScript, and Tailwind CSS.
 
-## ✨ Overview
+This project was developed as a frontend portfolio project with a focus on reusable components, responsive layouts, RTL support, dark mode, and clean UI implementation.
 
-Golden Coffee is a responsive coffee shop landing page designed with a focus on clean UI, reusable React components and a consistent responsive experience across mobile, tablet and desktop devices.
-
-The project was built as a frontend UI project to practice and demonstrate modern React development and Tailwind CSS.
-
-## 🚀 Features
+## ✨ Features
 
 - 📱 Fully responsive design
 - 🌙 Dark / Light mode
-- 🧭 Responsive desktop and mobile navigation
+- 🇮🇷 RTL and Persian language support
 - 🛒 Shopping cart UI
-- 🛍️ Product cards
-- ☕ Product categories
+- 🧭 Responsive navigation
+- ☕ Coffee categories
+- 🏷️ Product cards with discount states
 - 🎁 Coffee Club section
-- 🖼️ Responsive hero section
-- 📞 Contact and footer sections
-- 🇮🇷 Full RTL and Persian UI
-- 🧩 Reusable React components
-- 🎨 Custom typography and responsive font sizes
-- ⚡ Fast development with Vite
+- 📦 Reusable React components
+- 🖼️ Responsive banners and sections
+- 📱 Mobile sidebar navigation
+- 🧩 Component-based architecture
 
 ## 🛠️ Tech Stack
 
-- **React**
-- **TypeScript**
-- **Tailwind CSS**
-- **React Router**
-- **Context API**
-- **Vite**
-- **React Icons**
+- React
+- TypeScript
+- Tailwind CSS
+- React Router
+- Vite
+- React Icons
 
 ## 📂 Project Structure
 
@@ -46,13 +40,17 @@ src/
 │   ├── Footer/
 │   ├── Header/
 │   ├── Hero/
-│   ├── ProductCard/
+│   ├── NewProducts/
+│   ├── Services/
 │   └── ...
 │
 ├── context/
-│   └── DarkModeContext/
-│
 ├── pages/
-│
+├── providers/
+├── styles/
+├── fonts/
 ├── App.tsx
-└── main.tsx
+├── Index.tsx
+├── main.tsx
+└── routes.tsx
+```
