@@ -70,11 +70,7 @@ function Category() {
               flex-wrap
               justify-center
               gap-6
-             
               pb-4
-              
-
-              
               lg:gap-6
             "
           >

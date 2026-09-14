@@ -266,8 +266,7 @@ function Footer() {
         >
           <p className="font-danaRegular text-xs leading-6 text-zinc-400 sm:text-sm">
             تمام حقوق این رابط کاربری متعلق به{" "}
-            <span className="text-orange-300">سبزلرن</span> می‌باشد و دانشجوی
-            این دوره اجازه استفاده از آن را در مصارف شخصی و تجاری ندارد.
+            <span className="text-orange-300">امین کاظمی</span> می باشد
           </p>
 
           <p
