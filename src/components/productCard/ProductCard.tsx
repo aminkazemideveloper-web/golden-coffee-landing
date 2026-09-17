@@ -118,7 +118,7 @@ function ProductCard({
         {/* Title */}
         <h3
           className="
-            line-clamp-2
+            line-clamp-1
             min-h-[3rem]
             font-danaMedium
             text-300

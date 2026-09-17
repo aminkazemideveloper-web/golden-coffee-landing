@@ -68,11 +68,11 @@ function NewProducts() {
   ];
 
   return (
-    <section className="w-full min-w-0 py-12 sm:py-16 lg:py-20">
+    <section className="w-full min-w-0 py-12 sm:py-16 lg:py-20 ">
       <Container>
         <div dir="rtl">
           {/* Section Header */}
-          <div className="mb-8 flex items-end justify-between sm:mb-10">
+          <div className="mb-8 flex items-end justify-between sm:mb-10 ">
             <div className="flex flex-col gap-1">
               <h2
                 className="
@@ -120,36 +120,49 @@ function NewProducts() {
           </div>
 
           {/* Products */}
-          <div className="relative w-full min-w-0 overflow-hidden">
-            <Swiper
-              loop
-              slidesPerView="auto"
-              spaceBetween={10}
-              autoplay={{
-                delay: 2500,
-                disableOnInteraction: false,
-              }}
-              modules={[Autoplay]}
-              breakpoints={{
-                640: {
-                  slidesPerView: 2,
-                  spaceBetween: 16,
-                },
-                1024: {
-                  slidesPerView: 4,
-                  spaceBetween: 24,
-                },
-              }}
-              className="!w-full !min-w-0"
-            >
-              {products.map((product) => (
-                <SwiperSlide key={product.id} className="!min-w-0">
-                  <ProductCard {...product} />
-                </SwiperSlide>
-              ))}
+          {/* <div className="relative w-full min-w-0 overflow-hidden bg-red-300">
+            <div className="p-5">
+              <Swiper
+                loop
+                slidesPerView={1}
+                spaceBetween={10}
+                autoplay={{
+                  delay: 2500,
+                  disableOnInteraction: false,
+                }}
+                modules={[Autoplay]}
+                breakpoints={{
+                  640: {
+                    slidesPerView: 2,
+                    spaceBetween: 16,
+                  },
+                  1024: {
+                    slidesPerView: 4,
+                    spaceBetween: 24,
+                  },
+                }}
+                className="!w-full !min-w-0"
+              >
+                {products.map((product) => (
+                  <SwiperSlide
+                    key={product.id}
+                    className="!min-w-0 !max-w-full"
+                  >
+                    <div className="w-full min-w-0 overflow-hidden">
+                      <ProductCard {...product} />
+                    </div>
+                  </SwiperSlide>
+                ))}
 
-              <SwiperButtons />
-            </Swiper>
+                <SwiperButtons />
+              </Swiper>
+            </div>
+          </div> */}
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 w-full min-w-0 overflow-hidden">
+            {products.slice(0, 4).map((product) => (
+              <ProductCard {...product} />
+            ))}
           </div>
 
           {/* Mobile See All */}

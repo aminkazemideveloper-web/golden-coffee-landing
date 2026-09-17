@@ -13,7 +13,7 @@ function Home() {
       <main className="flex w-full min-w-0 flex-col items-center">
         <Hero />
 
-        {/* <NewProducts /> */}
+        <NewProducts />
 
         <AnimatedSection animation="from-left">
           <Banner />
