@@ -5,6 +5,7 @@ import MobileHeader from "./components/MobileHeader";
 import { SidebarContext } from "./context/SidebarContext";
 import SidebarProvider from "./context/SidebarProvider";
 
+
 export type MenuItemType = {
   id: number;
   title: string;

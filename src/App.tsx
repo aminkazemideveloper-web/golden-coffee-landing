@@ -1,16 +1,7 @@
-import { useRoutes } from "react-router-dom"
-import routes from "./routes"
+import { redirect } from "react-router";
 
+const App = () => {
+  return redirect("/");
+};
 
-
-function App() {
-const router = useRoutes(routes)
-
-  return (
-    <div>
-        {router}    
-    </div>
-  )
-}
-
-export default App
+export default App;

@@ -1,6 +1,7 @@
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { HiOutlineArrowsRightLeft } from "react-icons/hi2";
-import { HiOutlineStar } from "react-icons/hi";
+import { HiOutlineStar, HiStar } from "react-icons/hi";
+import { Link } from "react-router";
 
 interface ProductCardProps {
   id: number;
@@ -9,6 +10,7 @@ interface ProductCardProps {
   price: number;
   offer?: number;
   productCount: number;
+  rating: number;
 }
 
 function ProductCard({
@@ -17,12 +19,11 @@ function ProductCard({
   price,
   offer,
   productCount,
+  rating,
 }: ProductCardProps) {
   const isAvailable = productCount > 0;
 
-  const discountedPrice = offer
-    ? Math.round(price * (1 - offer / 100))
-    : price;
+  const discountedPrice = offer ? Math.round(price * (1 - offer / 100)) : price;
 
   const formatPrice = (value: number) => {
     return value.toLocaleString("fa-IR");
@@ -32,51 +33,56 @@ function ProductCard({
     <article
       dir="rtl"
       className="
-        group
-        flex h-full
-        flex-col
-        justify-between
-        overflow-hidden
-        rounded-2xl
-        border border-zinc-100
-        bg-white
-        p-3
-        shadow-sm
-        transition-all
-        duration-300
-        hover:-translate-y-1
-        hover:shadow-lg
-        dark:border-zinc-700
-        dark:bg-zinc-800
-      "
+    group
+    flex
+    w-full
+    min-w-0
+    flex-col
+    justify-between
+    overflow-hidden
+    rounded-2xl
+    border border-zinc-100
+    bg-white
+    p-2
+    shadow-sm
+    transition-all
+    duration-300
+    hover:-translate-y-1
+    hover:shadow-lg
+    dark:border-zinc-700
+    dark:bg-zinc-800
+    sm:p-3
+  "
     >
       {/* Product Image */}
       <div className="relative">
         <div
           className="
-            flex
-            aspect-square
-            w-full
-            items-center
-            justify-center
-            overflow-hidden
-            rounded-xl
-            bg-zinc-50
-            dark:bg-zinc-700/50
-          "
+    flex
+    h-32
+    w-full
+    items-center
+    justify-center
+    overflow-hidden
+    rounded-xl
+    bg-zinc-50
+    dark:bg-zinc-700/50
+    sm:h-44
+    lg:h-56
+  "
         >
           <img
             src={img}
             alt={title}
             className="
-              h-full
-              w-full
-              object-contain
-              p-2
-              transition-transform
-              duration-500
-              group-hover:scale-105
-            "
+      h-full
+      w-full
+      object-contain
+      p-2
+      transition-transform
+      duration-500
+      group-hover:scale-105
+    "
           />
         </div>
 
@@ -214,9 +220,8 @@ function ProductCard({
       >
         {/* Actions */}
         <div className="flex items-center gap-3">
-          <button
-            type="button"
-            disabled={!isAvailable}
+          <Link
+            to="/shop"
             aria-label="افزودن به سبد خرید"
             className="
               flex
@@ -238,7 +243,7 @@ function ProductCard({
             "
           >
             <MdOutlineShoppingCart className="h-5 w-5" />
-          </button>
+          </Link>
 
           <button
             type="button"
@@ -265,16 +270,30 @@ function ProductCard({
           className="flex items-center gap-0.5"
           aria-label="امتیاز 5 از 5"
         >
-          {Array.from({ length: 5 }).map((_, index) => (
-            <HiOutlineStar
-              key={index}
-              className="
+          {Array.from({ length: Math.ceil(rating) })
+            .fill("")
+            .map((_, index) => (
+              <HiOutlineStar
+                key={index}
+                className="
                 h-3.5 w-3.5
                 text-yellow-400
                 sm:h-4 sm:w-4
               "
-            />
-          ))}
+              />
+            ))}
+          {Array.from({ length: 5 - Math.ceil(rating) })
+            .fill("")
+            .map((_, index) => (
+              <HiStar
+                key={index}
+                className="
+                h-3.5 w-3.5
+                text-yellow-400
+                sm:h-4 sm:w-4
+              "
+              />
+            ))}
         </div>
       </div>
     </article>

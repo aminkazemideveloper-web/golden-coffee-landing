@@ -1,11 +1,11 @@
-import Header from '../../components/Header/Header'
+
 
 function Login() {
   return (
     <>
-    <Header/>
+      <div>amin</div>
     </>
-  )
+  );
 }
 
-export default Login
+export default Login;

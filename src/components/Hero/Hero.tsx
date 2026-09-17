@@ -1,3 +1,5 @@
+import SearchInput from "../SearchInput/SearchInput";
+
 function Hero() {
   return (
     <section dir="rtl" className="relative h-dvh w-full overflow-hidden">
@@ -15,9 +17,10 @@ function Hero() {
 
       <div
         dir="rtl"
-        className="absolute inset-x-0 top-[15%] text-right text-white sm:top-[20%] lg:top-1/4"
+        className="absolute inset-x-0 top-[30%] text-right text-white  lg:top-1/4"
       >
-        <div className="flex w-full justify-end px-4 sm:px-8 lg:px-12">
+        <SearchInput />
+        <div className="flex w-full justify-end px-4 sm:px-8 lg:px-12 mt-4">
           <div className="flex w-full max-w-[720px] flex-col items-start gap-3 sm:gap-4">
             <div className="flex flex-col items-start gap-1">
               <h1 className="font-morabbaBold text-600 leading-[1.15] sm:text-700 lg:text-800">

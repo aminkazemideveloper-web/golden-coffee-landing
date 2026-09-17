@@ -6,7 +6,8 @@ import { IoMdClose } from "react-icons/io";
 import { IoMoonOutline } from "react-icons/io5";
 import { MdOutlineLightMode } from "react-icons/md";
 import { SlMenu } from "react-icons/sl";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router";
+
 import { clsx } from "clsx";
 
 import { DarkModeContext } from "../../../context/DarkModeContext";
@@ -29,318 +30,279 @@ function MobileHeader({ list }: Props) {
 
   return (
     <>
-      {/* =====================================================
-          Mobile Top Header
-      ====================================================== */}
+      {/* ==================== Mobile Header ==================== */}
       <header
         dir="rtl"
         className="
           absolute inset-x-0 top-0 z-40
-          flex h-16 items-center justify-between
-          px-4
-          sm:px-6
+          flex w-full items-center justify-between
+          bg-white px-4 py-2
+          dark:bg-zinc-800
           lg:hidden
         "
       >
-        {/* Shopping Cart */}
-        <button
-          type="button"
-          aria-label="سبد خرید"
-          className="
-            flex h-10 w-10 items-center justify-center
-            rounded-full
-            text-orange-200
-            transition-colors duration-200
-            hover:bg-white/10
-          "
-        >
-          <FiShoppingCart className="h-5 w-5" />
-        </button>
-
-        {/* Logo */}
-        <Link
-          to="/"
-          className="absolute left-1/2 w-28 -translate-x-1/2 sm:w-32"
-        >
-          <img src="/images/svgs/logo-type.svg" alt="لوگو" className="w-full" />
-        </Link>
-
-        {/* Hamburger */}
-        <button
-          type="button"
-          onClick={toggleSidebar}
-          aria-label="باز کردن منو"
-          className="
-            flex h-10 w-10 items-center justify-center
-            rounded-full
-            text-orange-200
-            transition-colors duration-200
-            hover:bg-white/10
-          "
-        >
-          <SlMenu className="h-6 w-6" />
-        </button>
-      </header>
-
-      {/* =====================================================
-          Mobile Sidebar
-      ====================================================== */}
-      <aside
-        dir="rtl"
-        className={clsx(
-          "fixed right-0 top-0 z-50 h-dvh w-[280px]",
-          "overflow-y-auto",
-          "bg-white shadow-2xl",
-          "dark:bg-zinc-900",
-          "transition-transform duration-300 ease-in-out",
-          isOpen ? "translate-x-0" : "translate-x-full",
-        )}
-      >
-        {/* Sidebar Header */}
-        <div
-          className="
-            flex h-20 items-center justify-between
-            border-b border-gray-100
-            px-5
-            dark:border-zinc-800
-          "
-        >
-          {/* Logo */}
-          <Link to="/" onClick={toggleSidebar} className="w-28">
-            <img
-              src="/images/svgs/logo-type.svg"
-              alt="لوگو"
-              className="w-full"
-            />
-          </Link>
-
-          {/* Close */}
+        {/* Menu button */}
+        <div className="flex items-center gap-4">
           <button
             type="button"
             onClick={toggleSidebar}
-            aria-label="بستن منو"
-            className="
-              flex h-9 w-9 items-center justify-center
-              rounded-full
-              text-gray-500
-              transition-colors duration-200
-              hover:bg-orange-100
-              hover:text-orange-500
-              dark:text-gray-300
-              dark:hover:bg-orange-300/10
-            "
+            aria-label="باز کردن منو"
+            className="text-2xl text-zinc-700 dark:text-white"
           >
-            <IoMdClose className="h-6 w-6" />
+            <SlMenu />
           </button>
+
+          {/* Logo */}
+          <Link to="/" className="flex items-center">
+            <img
+              src="images/app-logo.png"
+              alt="لوگو"
+              className="h-10 w-auto object-contain"
+            />
+          </Link>
         </div>
 
-        {/* =================================================
-            Navigation
-        ================================================== */}
-        <nav className="px-4 py-6">
-          <ul className="flex flex-col gap-2">
-            {list.map((item) => {
-              const hasChildren = Boolean(item.children?.length);
-              const isSubMenuOpen = openMenu === item.id;
+        {/* Actions */}
+        <div className="flex items-center gap-4">
+          {/* Theme */}
+          <button
+            type="button"
+            onClick={toggleTheme}
+            aria-label="تغییر تم"
+            className="text-xl text-zinc-700 dark:text-white"
+          >
+            {theme === "dark" ? <MdOutlineLightMode /> : <IoMoonOutline />}
+          </button>
 
-              return (
-                <li key={item.id}>
-                  <div className="flex flex-col">
-                    {/* Main Menu Item */}
-                    <div className="flex items-center">
+          {/* Cart */}
+          <Link
+            to="/cart"
+            aria-label="سبد خرید"
+            className="text-xl text-zinc-700 dark:text-white"
+          >
+            <FiShoppingCart />
+          </Link>
+        </div>
+      </header>
+
+      {/* ==================== Sidebar ==================== */}
+
+      <div
+        className={clsx(
+          "fixed inset-y-0 right-0 z-50 w-[280px] overflow-hidden lg:hidden",
+          isOpen ? "pointer-events-auto" : "pointer-events-none",
+        )}
+      >
+        <aside
+          dir="rtl"
+          className={clsx(
+            "absolute inset-0 overflow-y-auto",
+            "bg-white shadow-2xl",
+            "dark:bg-zinc-900",
+            "transition-transform duration-300 ease-in-out",
+            "grid grid-rows-[auto_1fr_auto]",
+            isOpen ? "translate-x-0" : "translate-x-full",
+          )}
+        >
+          {/* Sidebar Header */}
+          <div
+            className="
+              flex
+              items-center
+              justify-between
+              border-b
+              border-zinc-200
+              px-4
+              py-4
+              dark:border-zinc-700
+            "
+          >
+            {/* Close */}
+            <button
+              type="button"
+              onClick={toggleSidebar}
+              aria-label="بستن منو"
+              className="text-2xl text-zinc-700 dark:text-white"
+            >
+              <IoMdClose />
+            </button>
+
+            {/* Logo */}
+            <Link
+              to="/"
+              onClick={() => {
+                if (isOpen) toggleSidebar();
+              }}
+              className="flex items-center"
+            >
+              <img
+                src="images/app-logo.png"
+                alt="لوگو"
+                className="h-10 w-auto object-contain"
+              />
+            </Link>
+          </div>
+
+          {/* Sidebar Content */}
+          <nav className="px-4 py-4">
+            <ul className="flex flex-col gap-1">
+              {list.map((item) => {
+                const hasChildren =
+                  Array.isArray(item.children) && item.children.length > 0;
+
+                if (!hasChildren) {
+                  return (
+                    <li key={item.id}>
                       <NavLink
                         to={item.link}
                         onClick={() => {
-                          if (!hasChildren) {
+                          setOpenMenu(null);
+
+                          if (isOpen) {
                             toggleSidebar();
                           }
                         }}
                         className={({ isActive }) =>
                           clsx(
-                            "flex min-h-11 flex-1 items-center",
-                            "rounded-xl px-3",
-                            "font-danaMedium text-[15px]",
-                            "text-gray-700",
-                            "transition-colors duration-200",
-                            "hover:bg-orange-300/10",
-                            "hover:text-orange-500",
-                            "dark:text-gray-200",
-                            "dark:hover:bg-orange-300/10",
-                            isActive && "nav-active",
+                            "flex items-center justify-between rounded-lg px-3 py-3",
+                            "font-danaMedium text-400",
+                            "transition-colors",
+                            isActive
+                              ? "bg-orange-500 text-white"
+                              : "text-zinc-700 hover:bg-orange-50 hover:text-orange-500 dark:text-white dark:hover:bg-zinc-800",
                           )
                         }
                       >
-                        {item.title}
+                        <span>{item.title}</span>
                       </NavLink>
+                    </li>
+                  );
+                }
 
-                      {/* Submenu Toggle */}
-                      {hasChildren && (
-                        <button
-                          type="button"
-                          onClick={() => toggleSubMenu(item.id)}
-                          aria-label={`باز کردن ${item.title}`}
-                          className="
-                            flex h-10 w-10 shrink-0
-                            items-center justify-center
-                            rounded-xl
-                            text-gray-500
-                            transition-colors duration-200
-                            hover:bg-orange-300/10
-                            hover:text-orange-500
-                            dark:text-gray-300
-                          "
-                        >
-                          <IoIosArrowDown
-                            className={clsx(
-                              "transition-transform duration-300",
-                              isSubMenuOpen && "rotate-180",
-                            )}
-                          />
-                        </button>
-                      )}
-                    </div>
+                const isMenuOpen = openMenu === item.id;
 
-                    {/* =================================================
-                        Sub Menu
-                    ================================================== */}
-                    {hasChildren && (
-                      <div
+                return (
+                  <li key={item.id}>
+                    <button
+                      type="button"
+                      onClick={() => toggleSubMenu(item.id)}
+                      className="
+                        flex
+                        w-full
+                        items-center
+                        justify-between
+                        rounded-lg
+                        px-3
+                        py-3
+                        font-danaMedium
+                        text-400
+                        text-zinc-700
+                        transition-colors
+                        hover:bg-orange-50
+                        hover:text-orange-500
+                        dark:text-white
+                        dark:hover:bg-zinc-800
+                      "
+                    >
+                      <span>{item.title}</span>
+
+                      <IoIosArrowDown
                         className={clsx(
-                          "grid transition-all duration-300",
-                          isSubMenuOpen
-                            ? "grid-rows-[1fr] opacity-100"
-                            : "grid-rows-[0fr] opacity-0",
+                          "text-lg transition-transform duration-300",
+                          isMenuOpen && "rotate-180",
                         )}
-                      >
-                        <ul className="overflow-hidden">
-                          <div
-                            className="
-                              mr-4 mt-2
-                              border-r border-orange-200
-                              pr-3
-                              dark:border-orange-300/30
-                            "
-                          >
-                            {item.children?.map((sub: MenuItemType) => (
-                              <li key={sub.id}>
-                                <Link
-                                  to="#"
-                                  onClick={toggleSidebar}
-                                  className="
-                                    block rounded-lg
-                                    px-3 py-2.5
-                                    font-danaRegular text-sm
-                                    text-gray-500
-                                    transition-colors duration-200
-                                    hover:bg-orange-300/10
-                                    hover:text-orange-500
-                                    dark:text-gray-300
-                                  "
-                                >
-                                  {sub.title}
-                                </Link>
-                              </li>
-                            ))}
-                          </div>
+                      />
+                    </button>
+
+                    {/* Submenu */}
+                    <div
+                      className={clsx(
+                        "grid transition-[grid-template-rows] duration-300",
+                        isMenuOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
+                      )}
+                    >
+                      <div className="min-h-0 overflow-hidden">
+                        <ul className="mt-1 flex flex-col gap-1 pr-3">
+                          {item.children?.map((child) => (
+                            <li key={child.id}>
+                              <NavLink
+                                to={child.link}
+                                onClick={() => {
+                                  setOpenMenu(null);
+
+                                  if (isOpen) {
+                                    toggleSidebar();
+                                  }
+                                }}
+                                className={({ isActive }) =>
+                                  clsx(
+                                    "block rounded-lg px-3 py-2",
+                                    "font-danaRegular text-300",
+                                    "transition-colors",
+                                    isActive
+                                      ? "bg-orange-500 text-white"
+                                      : "text-zinc-600 hover:bg-orange-50 hover:text-orange-500 dark:text-zinc-200 dark:hover:bg-zinc-800",
+                                  )
+                                }
+                              >
+                                {child.title}
+                              </NavLink>
+                            </li>
+                          ))}
                         </ul>
                       </div>
-                    )}
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
 
-        {/* Divider */}
-        <div className="mx-5 h-px bg-gray-100 dark:bg-zinc-800" />
+          {/* Login */}
+          <div className="border-t border-zinc-200 px-4 py-4 dark:border-zinc-700">
+            <Link
+              to="/login"
+              onClick={() => {
+                if (isOpen) toggleSidebar();
+              }}
+              className="
+                flex
+                items-center
+                justify-center
+                gap-2
+                rounded-lg
+                bg-orange-500
+                px-4
+                py-3
+                font-danaMedium
+                text-400
+                text-white
+                transition-colors
+                hover:bg-orange-600
+              "
+            >
+              <BsBoxArrowInRight />
+              <span>ورود / ثبت نام</span>
+            </Link>
+          </div>
+        </aside>
+      </div>
 
-        {/* =================================================
-            Actions
-        ================================================== */}
-        <div className="px-5 py-6">
-          <ul className="flex flex-col gap-2">
-            {/* Login / Register */}
-            <li>
-              <Link
-                to="/login"
-                onClick={toggleSidebar}
-                className="
-                  flex min-h-11 items-center gap-3
-                  rounded-xl px-3
-                  text-orange-400
-                  transition-colors duration-200
-                  hover:bg-orange-300/10
-                "
-              >
-                <BsBoxArrowInRight className="h-5 w-5" />
-
-                <span
-                  className="
-                    flex items-center gap-2
-                    font-danaRegular text-sm
-                  "
-                >
-                  <span>ورود</span>
-
-                  <span className="h-4 w-px bg-orange-300" />
-
-                  <span>ثبت نام</span>
-                </span>
-              </Link>
-            </li>
-
-            {/* Theme */}
-            <li>
-              <button
-                type="button"
-                onClick={toggleTheme}
-                className="
-                  flex min-h-11 w-full
-                  items-center gap-3
-                  rounded-xl px-3
-                  text-orange-400
-                  transition-colors duration-200
-                  hover:bg-orange-300/10
-                "
-              >
-                {theme === "dark" ? (
-                  <>
-                    <IoMoonOutline className="h-5 w-5" />
-
-                    <span className="font-danaRegular text-sm">تم تیره</span>
-                  </>
-                ) : (
-                  <>
-                    <MdOutlineLightMode className="h-5 w-5" />
-
-                    <span className="font-danaRegular text-sm">تم روشن</span>
-                  </>
-                )}
-              </button>
-            </li>
-
-            {/* Shopping Cart */}
-            <li>
-              <button
-                type="button"
-                className="
-                  flex min-h-11 w-full
-                  items-center gap-3
-                  rounded-xl px-3
-                  text-orange-400
-                  transition-colors duration-200
-                  hover:bg-orange-300/10
-                "
-              >
-                <FiShoppingCart className="h-5 w-5" />
-
-                <span className="font-danaRegular text-sm">سبد خرید</span>
-              </button>
-            </li>
-          </ul>
-        </div>
-      </aside>
+      {/* ==================== Backdrop ==================== */}
+      {isOpen && (
+        <button
+          type="button"
+          aria-label="بستن منو"
+          onClick={toggleSidebar}
+          className="
+            fixed
+            inset-0
+            z-40
+            bg-black/40
+            lg:hidden
+          "
+        />
+      )}
     </>
   );
 }

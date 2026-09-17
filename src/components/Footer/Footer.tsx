@@ -2,7 +2,7 @@ import { CiLocationOn, CiMail } from "react-icons/ci";
 import { LuPhone } from "react-icons/lu";
 import { FiInstagram } from "react-icons/fi";
 import { RiTelegram2Fill } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 function Footer() {
   const quickLinks = [
@@ -20,7 +20,7 @@ function Footer() {
     <footer
       dir="rtl"
       className="
-        mt-20
+        
         bg-zinc-900
         text-white
         dark:bg-zinc-950

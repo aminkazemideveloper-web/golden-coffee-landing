@@ -1,0 +1,36 @@
+.animated-section {
+  inline-size: 100%;
+  min-inline-size: 0;
+  overflow: hidden;
+  transition: all 0.7s ease-in;
+
+  &.fade-up {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  &.from-left {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  &.from-right {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  &.visible {
+    &.fade-up {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    &.from-left {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    &.from-right {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}

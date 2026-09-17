@@ -4,12 +4,13 @@ import { IoIosArrowDown } from "react-icons/io";
 import { IoMoonOutline } from "react-icons/io5";
 import { MdOutlineLightMode } from "react-icons/md";
 import { BsBoxArrowInRight } from "react-icons/bs";
-import { Link, NavLink } from "react-router-dom";
+
 import { clsx } from "clsx";
 
 import ShoppingCart from "../../shoppingcart/ShoppingCart";
 import type { MenuItemType } from "../Header";
 import { DarkModeContext } from "../../../context/DarkModeContext";
+import { Link, NavLink } from "react-router";
 
 type Props = {
   list: MenuItemType[];
@@ -29,47 +30,52 @@ function DesktopHeader({ list }: Props) {
   "
     >
       <div className="container mx-auto flex h-full items-center justify-between px-8">
-        {/* Logo */}
-        <Link to="/" className="w-28 shrink-0">
-          <img src="/images/svgs/logo-type.svg" alt="Logo" className="w-full" />
-        </Link>
+        <div className="flex items-center gap-2">
+          {/* Logo */}
+          <Link to="/" className="w-28 shrink-0">
+            <img
+              src="/images/svgs/logo-type.svg"
+              alt="Logo"
+              className="w-full"
+            />
+          </Link>
 
-        {/* Navigation */}
-        <nav className="flex h-full items-center">
-          <ul
-            className="
+          {/* Navigation */}
+          <nav className="flex h-full items-center mr-3">
+            <ul
+              className="
     flex h-full items-center gap-7
     font-danaMedium text-lg tracking-tight
     text-zinc-700
   "
-          >
-            {list.map((item) => (
-              <li
-                key={item.id}
-                className="group relative flex h-full items-center"
-              >
-                <NavLink
-                  to={item.link}
-                  className={({ isActive }) =>
-                    clsx(
-                      "flex h-full items-center gap-1.5 whitespace-nowrap",
-                      "transition-colors duration-200",
-                      "hover:text-orange-500",
-                      isActive && "text-orange-500",
-                    )
-                  }
+            >
+              {list.map((item) => (
+                <li
+                  key={item.id}
+                  className="group relative flex h-full items-center"
                 >
-                  <span>{item.title}</span>
+                  <NavLink
+                    to={item.link}
+                    className={({ isActive }) =>
+                      clsx(
+                        "flex h-full items-center gap-1.5 whitespace-nowrap",
+                        "transition-colors duration-200",
+                        "hover:text-orange-500",
+                        isActive && "text-orange-500",
+                      )
+                    }
+                  >
+                    <span>{item.title}</span>
 
+                    {item.children && (
+                      <IoIosArrowDown className="text-sm transition-transform duration-200 group-hover:rotate-180" />
+                    )}
+                  </NavLink>
+
+                  {/* Dropdown */}
                   {item.children && (
-                    <IoIosArrowDown className="text-sm transition-transform duration-200 group-hover:rotate-180" />
-                  )}
-                </NavLink>
-
-                {/* Dropdown */}
-                {item.children && (
-                  <ul
-                    className="
+                    <ul
+                      className="
                       invisible absolute right-0 top-full z-50
                       w-56 translate-y-2
                       rounded-xl border-t-[3px] border-orange-300
@@ -81,12 +87,12 @@ function DesktopHeader({ list }: Props) {
                       group-hover:opacity-100
                       dark:bg-zinc-800
                     "
-                  >
-                    {item.children.map((sub) => (
-                      <li key={sub.id}>
-                        <Link
-                          to={sub.link}
-                          className="
+                    >
+                      {item.children.map((sub) => (
+                        <li key={sub.id}>
+                          <Link
+                            to={sub.link}
+                            className="
                             block rounded-lg px-3 py-2.5
                             font-danaRegular text-sm
                             text-gray-700
@@ -96,20 +102,21 @@ function DesktopHeader({ list }: Props) {
                             dark:text-gray-200
                             dark:hover:bg-orange-300/10
                           "
-                        >
-                          {sub.title}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </li>
-            ))}
-          </ul>
-        </nav>
+                          >
+                            {sub.title}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
 
         {/* Actions */}
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-3">
           {/* Cart */}
           <div className="group relative flex h-10 w-10 items-center justify-center">
             <button
@@ -162,9 +169,9 @@ function DesktopHeader({ list }: Props) {
 
           {/* Login / Register */}
           <Link
-            to="/login"
+            to="/auth"
             className="
-    flex items-center gap-3.5
+    flex items-center gap-2
     text-orange-500
     transition-colors duration-200
     hover:text-orange-600
@@ -172,7 +179,7 @@ function DesktopHeader({ list }: Props) {
           >
             <BsBoxArrowInRight className="h-5 w-5" />
 
-            <span className="flex items-center gap-2 text-lg">
+            <span className="flex items-center gap-1 text-sm">
               <span>ورود</span>
 
               <span className="h-4 w-px bg-orange-200" />

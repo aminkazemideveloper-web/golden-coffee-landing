@@ -1,0 +1,39 @@
+.search-input {
+  inline-size: min(35rem, calc(100% - 2rem));
+
+  margin-inline: auto;
+  border-radius: 999rem;
+  corner-shape: round;
+  block-size: 4rem;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+
+  input {
+    min-inline-size: 0;
+    flex-grow: 1;
+    padding: 0.5rem;
+    border: none;
+    outline: none;
+    padding-inline-start: 2rem;
+    background-color: transparent;
+  }
+  button {
+    border: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 0.5rem;
+    transition: all 0.2s ease;
+    inline-size: 4rem;
+    block-size: 100%;
+  }
+
+  &:focus-within {
+    outline: 2px solid rgba(0, 0, 0, 0.5);
+    outline-offset: -2px;
+  }
+}

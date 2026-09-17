@@ -1,6 +1,13 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import Container from "../container/Container";
 import ProductCard from "../productCard/ProductCard";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import "swiper/css";
+import "swiper/css/free-mode";
+
+import { Autoplay } from "swiper/modules";
+import SwiperButtons from "./components/SwiperButtons";
 
 function NewProducts() {
   const navigate = useNavigate();
@@ -13,6 +20,7 @@ function NewProducts() {
       price: 100_000,
       offer: 12,
       productCount: 0,
+      rating: 3.5,
     },
     {
       id: 2,
@@ -21,6 +29,7 @@ function NewProducts() {
       price: 185_000,
       offer: 12,
       productCount: 50,
+      rating: 4,
     },
     {
       id: 3,
@@ -28,6 +37,7 @@ function NewProducts() {
       title: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
       price: 185_000,
       productCount: 80,
+      rating: 3,
     },
     {
       id: 4,
@@ -36,6 +46,7 @@ function NewProducts() {
       price: 195_000,
       offer: 12,
       productCount: 10,
+      rating: 4.5,
     },
     {
       id: 5,
@@ -44,6 +55,7 @@ function NewProducts() {
       price: 215_000,
       offer: 12,
       productCount: 5,
+      rating: 5,
     },
     {
       id: 6,
@@ -51,11 +63,12 @@ function NewProducts() {
       title: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
       price: 185_000,
       productCount: 1,
+      rating: 4,
     },
   ];
 
   return (
-    <section className="py-12 sm:py-16 lg:py-20">
+    <section className="w-full min-w-0 py-12 sm:py-16 lg:py-20">
       <Container>
         <div dir="rtl">
           {/* Section Header */}
@@ -107,20 +120,36 @@ function NewProducts() {
           </div>
 
           {/* Products */}
-          <div
-            className="
-              grid
-              grid-cols-2
-              gap-3
-              sm:grid-cols-3
-              sm:gap-5
-              lg:grid-cols-4
-              lg:gap-6
-            "
-          >
-            {products.slice(0, 4).map((product) => (
-              <ProductCard key={product.id} {...product} />
-            ))}
+          <div className="relative w-full min-w-0 overflow-hidden">
+            <Swiper
+              loop
+              slidesPerView="auto"
+              spaceBetween={10}
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
+              modules={[Autoplay]}
+              breakpoints={{
+                640: {
+                  slidesPerView: 2,
+                  spaceBetween: 16,
+                },
+                1024: {
+                  slidesPerView: 4,
+                  spaceBetween: 24,
+                },
+              }}
+              className="!w-full !min-w-0"
+            >
+              {products.map((product) => (
+                <SwiperSlide key={product.id} className="!min-w-0">
+                  <ProductCard {...product} />
+                </SwiperSlide>
+              ))}
+
+              <SwiperButtons />
+            </Swiper>
           </div>
 
           {/* Mobile See All */}

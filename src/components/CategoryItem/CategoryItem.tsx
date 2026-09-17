@@ -9,23 +9,35 @@ function CategoryItem({ img, title }: CategoryItemProps) {
     <div
       className="
         group
-        flex min-w-[150px] shrink-0
-        flex-col items-center gap-3
-        sm:min-w-0
+        flex
+        w-[120px]
+        shrink-0
+        flex-col
+        items-center
+        gap-2
+
+        sm:w-[150px]
+        sm:gap-3
+
+        lg:w-[180px]
       "
     >
       {/* Image */}
       <div
         className="
-          w-[150px]
-          sm:w-[170px]
-          lg:w-[200px]
+          w-[120px]
+
+          sm:w-[150px]
+
+          lg:w-[180px]
         "
       >
         <img
           src={img}
           alt={title}
+          draggable="false"
           className="
+            block
             w-full
             object-contain
             transition-transform
@@ -38,15 +50,18 @@ function CategoryItem({ img, title }: CategoryItemProps) {
       {/* Title */}
       <span
         className="
+          max-w-full
           whitespace-nowrap
           text-center
           font-danaDemiBold
           text-300
+          leading-6
           text-zinc-700
           transition-colors
           duration-300
           group-hover:text-orange-500
           dark:text-white
+
           sm:text-400
         "
       >
