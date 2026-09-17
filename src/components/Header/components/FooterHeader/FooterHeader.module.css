@@ -27,13 +27,13 @@
 
         justify-items: center;
         gap: 0.2rem;
+        box-shadow: 0 0 5px rgba(251, 146, 60, 50);
         transition: all 0.3s ease-in-out;
         .icon {
           font-size: 0.9rem;
           transition: all 0.3s ease-in-out;
         }
         &:hover {
-          box-shadow: 0 0 5px rgba(251, 146, 60, 50);
           transform: translateY(-5px);
           .icon {
             transform: scale(1.5);

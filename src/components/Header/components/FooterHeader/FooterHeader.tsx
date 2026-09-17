@@ -1,7 +1,7 @@
 import { NavLink } from "react-router";
 import styles from "./FooterHeader.module.css";
 import clsx from "clsx";
-import { BiHome, BiShow, BiUser } from "react-icons/bi";
+import { BiHome, BiShoppingBag, BiUser } from "react-icons/bi";
 
 function FooterHeader() {
   return (
@@ -54,7 +54,7 @@ function FooterHeader() {
             }
           >
             <span className={styles.icon}>
-              <BiShow />
+              <BiShoppingBag />
             </span>
             <span className="text-xs">فروشگاه</span>
           </NavLink>
