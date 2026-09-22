@@ -12,7 +12,7 @@ function Banner() {
     {
       id: 2,
       title: "پودرهای فوری",
-      desc: "نسکافه، هات چاکلت، ماسالا",
+      desc: "نسکافه، هات چاکلت، موکا",
       img: "/images/categories/category-left.jpg",
     },
   ];
