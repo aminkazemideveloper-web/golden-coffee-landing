@@ -1,13 +1,12 @@
 import { useNavigate } from "react-router";
 import Container from "../container/Container";
 import ProductCard from "../productCard/ProductCard";
-import { Swiper, SwiperSlide } from "swiper/react";
+
 
 import "swiper/css";
 import "swiper/css/free-mode";
 
-import { Autoplay } from "swiper/modules";
-import SwiperButtons from "./components/SwiperButtons";
+
 
 function NewProducts() {
   const navigate = useNavigate();
@@ -119,45 +118,7 @@ function NewProducts() {
             </button>
           </div>
 
-          {/* Products */}
-          {/* <div className="relative w-full min-w-0 overflow-hidden bg-red-300">
-            <div className="p-5">
-              <Swiper
-                loop
-                slidesPerView={1}
-                spaceBetween={10}
-                autoplay={{
-                  delay: 2500,
-                  disableOnInteraction: false,
-                }}
-                modules={[Autoplay]}
-                breakpoints={{
-                  640: {
-                    slidesPerView: 2,
-                    spaceBetween: 16,
-                  },
-                  1024: {
-                    slidesPerView: 4,
-                    spaceBetween: 24,
-                  },
-                }}
-                className="!w-full !min-w-0"
-              >
-                {products.map((product) => (
-                  <SwiperSlide
-                    key={product.id}
-                    className="!min-w-0 !max-w-full"
-                  >
-                    <div className="w-full min-w-0 overflow-hidden">
-                      <ProductCard {...product} />
-                    </div>
-                  </SwiperSlide>
-                ))}
-
-                <SwiperButtons />
-              </Swiper>
-            </div>
-          </div> */}
+          
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 w-full min-w-0 overflow-hidden">
             {products.slice(0, 4).map((product) => (
